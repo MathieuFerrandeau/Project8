@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from users import views 
+from users import views
+from django.conf import settings
+from django.conf.urls.static import static 
 
 urlpatterns = [
     path('content/', admin.site.urls),
@@ -25,4 +27,4 @@ urlpatterns = [
     path('logout/', views.user_logout, name='logout'),
     path('register/', views.register, name='register'),
     path('favorite/', views.favorite, name='favorite'),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
