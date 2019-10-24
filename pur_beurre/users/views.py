@@ -13,7 +13,7 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, 'Votre compte a bien été crée')
-            return redirect('login')
+            return redirect('catalog:index')
     else:
         form = RegisterForm()
         
@@ -39,7 +39,6 @@ def user_login(request):
 
 def user_logout(request):
     logout(request)
-    messages.success(request, ('Vous êtes déconnecté'))
     return render(request, 'users/logout.html')
 
 @login_required
