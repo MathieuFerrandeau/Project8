@@ -1,3 +1,4 @@
+""" Showing tables in the admin part """
 from django.contrib import admin
 from .models import Product, Category, UserFavorite
 

@@ -1,3 +1,4 @@
+"""Test management"""
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
@@ -21,7 +22,7 @@ class UserViewTests(TestCase):
 									{'username': 'user',
 									'email': 'testuser@email.com',
 									'password1': 'password',
-									'password2' : 'password' }, follow=True)
+									'password2' : 'password'}, follow=True)
 		self.assertEqual(response.status_code, 200)
 
 	def test_logout(self):

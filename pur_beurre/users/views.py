@@ -1,12 +1,16 @@
+"""Views management"""
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import RegisterForm, ConnexionForm
 from django.contrib.auth import authenticate, login, logout
+from catalog.models import Product
+from .forms import RegisterForm, ConnexionForm
 
-from catalog.models import UserFavorite, Product
+
+
 
 def register(request):
+    """register view"""
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
@@ -16,21 +20,21 @@ def register(request):
             return redirect('catalog:index')
     else:
         form = RegisterForm()
-        
+
     return render(request, 'users/register.html', {'form': form})
 
 def user_login(request):
+    """login view"""
     error = False
-
     if request.method == "POST":
         form = ConnexionForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data["username"]
             password = form.cleaned_data["password"]
-            user = authenticate(username=username, password=password)  # Nous vérifions si les données sont correctes
-            if user:  # Si l'objet renvoyé n'est pas None
-                login(request, user)  # nous connectons l'utilisateur
-            else: # sinon une erreur sera affichée
+            user = authenticate(username=username, password=password) #check if the data is correct
+            if user:  #if the returned object is not None
+                login(request, user)  #connect the user
+            else: #otherwise an error will be displayed
                 error = True
     else:
         form = ConnexionForm()
@@ -38,17 +42,19 @@ def user_login(request):
     return render(request, 'users/login.html', locals())
 
 def user_logout(request):
+    """logout view"""
     logout(request)
     return render(request, 'users/logout.html')
 
 @login_required
 def profile(request):
+    """profile view"""
     return render(request, 'users/profile.html')
 
 
 @login_required
 def favorite(request):
-
+    """favorite view"""
     user = request.user
     fav = Product.objects.filter(userfavorite__user_name=user.id)
     if fav:
