@@ -7,8 +7,6 @@ from catalog.models import Product
 from .forms import RegisterForm, ConnexionForm
 
 
-
-
 def register(request):
     """register view"""
     if request.method == 'POST':
@@ -23,6 +21,7 @@ def register(request):
 
     return render(request, 'users/register.html', {'form': form})
 
+
 def user_login(request):
     """login view"""
     error = False
@@ -31,20 +30,22 @@ def user_login(request):
         if form.is_valid():
             username = form.cleaned_data["username"]
             password = form.cleaned_data["password"]
-            user = authenticate(username=username, password=password) #check if the data is correct
-            if user:  #if the returned object is not None
-                login(request, user)  #connect the user
-            else: #otherwise an error will be displayed
+            user = authenticate(username=username, password=password)  # check if the data is correct
+            if user:  # if the returned object is not None
+                login(request, user)  # connect the user
+            else:  # otherwise an error will be displayed
                 error = True
     else:
         form = ConnexionForm()
 
     return render(request, 'users/login.html', locals())
 
+
 def user_logout(request):
     """logout view"""
     logout(request)
     return render(request, 'users/logout.html')
+
 
 @login_required
 def profile(request):

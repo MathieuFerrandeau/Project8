@@ -13,7 +13,6 @@ class IndexPageTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
 
 
-
 class DataTests(TestCase):
 
     def setUp(self):
@@ -26,7 +25,6 @@ class DataTests(TestCase):
                                picture='chocolat.jpeg',
                                nutrition_image='chocolatnutrigrade.com',
                                url='www.chocolat.com')
-
 
     def test_search_returns_200(self):
         chocolat = str('Chocolat')

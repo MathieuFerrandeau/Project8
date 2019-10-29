@@ -1,18 +1,18 @@
 """Imports OpenFoodFact data"""
 import requests
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from django.db.utils import DataError, IntegrityError
 from catalog.models import Category, Product
 
 
 class Command(BaseCommand):
+    """Initializes the database"""
     help = 'Initializes the database'
 
     CATEGORIES = ['Viandes', 'Poissons', 'Epicerie', 'Chocolats', 'Pates-a-tartiner',
                   'Biscuits', 'Vins', 'Boissons-gazeuses', 'Yaourts', 'Pains', 'Glace',
                   'Fromages-de-france', 'Pizzas', 'Snacks sucrés'
-                 ]
-
+                  ]
 
     def create_db(self):
         for category in self.CATEGORIES:
@@ -40,7 +40,7 @@ class Command(BaseCommand):
                     picture = product['image_front_url']
                     nutrition_image = product["image_nutrition_small_url"]
 
-                    Product.objects.create(name=name, category=new_category, brand=brand, nutrition_grade=nutrition_grade, 
+                    Product.objects.create(name=name, category=new_category, brand=brand, nutrition_grade=nutrition_grade,
                                            url=url, picture=picture, nutrition_image=nutrition_image)
 
                 except KeyError:
