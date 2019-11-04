@@ -32,9 +32,6 @@ else:
 
 ALLOWED_HOSTS = ['purbeurrep8.herokuapp.com', '127.0.0.1']
 
-
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -85,9 +82,9 @@ WSGI_APPLICATION = 'pur_beurre.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql', # on utilise l'adaptateur postgresql
-        'NAME': 'pur_beurre', # le nom de notre base de donnees creee precedemment
-        'USER': 'ferrandeau', # attention : remplacez par votre nom d'utilisateur
+        'ENGINE': 'django.db.backends.postgresql',  # on utilise l'adaptateur postgresql
+        'NAME': 'pur_beurre',  # le nom de notre base de donnees creee precedemment
+        'USER': 'ferrandeau',  # attention : remplacez par votre nom d'utilisateur
         'PASSWORD': '',
         'HOST': '',
         'PORT': '5432',

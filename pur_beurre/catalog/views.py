@@ -30,7 +30,8 @@ def search(request):
         product = Product.objects.filter(name=query).first()
         substitutes = Product.objects.filter(
             category=product.category,
-            nutrition_grade__lt=product.nutrition_grade).order_by("nutrition_grade")
+            nutrition_grade__lt=product.nutrition_grade).order_by(
+                "nutrition_grade")
         paginator = Paginator(substitutes, 6)
         page = request.GET.get('page')
         alt_products = paginator.get_page(page)
