@@ -35,10 +35,10 @@
 							<a href="{% url 'catalog:detail' product_id=new_product.id %}"> détails</a>
 
 							{% if user.is_authenticated %}
-							<div class="save-result" id="{{new_product.id}}"></div>
+							<div class="save-result" id="{{ new_product.id }}"></div>
 							<form method="post" action="{% url 'catalog:favorite' product_id=new_product.id%}">
 							    {% csrf_token %}
-							    <input class="btn btn-primary btn-xl mt-50" type="submit" value="Sauvegarder" id="{{new_product.id}}">
+							    <input class="btn btn-primary btn-xl mt-50" type="submit" value="Sauvegarder" id="{{ new_product.id }}">
 							</form>
 							{% endif %}
 						</div>
