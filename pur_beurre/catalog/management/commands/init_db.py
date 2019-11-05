@@ -54,3 +54,4 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         self.create_db()
+        self.stdout.write('La base de données a bien été initialisée.')

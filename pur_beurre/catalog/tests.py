@@ -1,7 +1,8 @@
 """test management"""
-from django.test import TestCase
+from django.test import TestCase, client
 from django.urls import reverse
-from .models import Product, Category
+from django.contrib.auth.models import User
+from .models import Product, Category, UserFavorite
 
 # Create your tests here.
 
@@ -10,7 +11,10 @@ class IndexPageTestCase(TestCase):
 
     def test_index_returns_200(self):
         response = self.client.get(reverse('catalog:index'))
+        html = response.content.decode('utf8')
+
         self.assertEqual(response.status_code, 200)
+        self.assertInHTML('<strong>DU GRAS, OUI, MAIS DE LA QUALITÉ !</strong>', html)
 
 
 class DataTests(TestCase):
@@ -39,3 +43,8 @@ class DataTests(TestCase):
             'query': chocolat,
         })
         self.assertEqual(response.status_code, 302)
+
+
+
+    
+
